@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="index.xhtml">Filieres</a> <i
+				class="icon-angle-right"></i></li>
+			<li><a href="#">Affichage</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title="">
+						<h2>
+							<i class="halflings-icon edit"></i><span class="break"></span>
+							#{cd_filieres.filiere.intitule}
+						</h2>
+					</div>
+					<div class="box-content">
+						<h:form  enctype="multipart/form-data">
+							<h:inputHidden value="#{cd_filieres.filiere.id}"></h:inputHidden>
+							<fieldset>
+								<div id="article">
+									<div class="control-group">
+										<label class="control-label required">Intitule de
+											filiere N°#{cd_filieres.filiere.id}</label>
+										<div class="controls">
+											<h:inputText styleClass="form-control"
+												value="#{cd_filieres.filiere.intitule}"></h:inputText>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label required">fichier</label>
+
+										<div class="controls">
+
+											<p:fileUpload value="#{cd_filieres.file}" mode="simple"
+												skinSimple="true" />
+
+										</div>
+
+
+									</div>
+									<div class="control-group">
+										<label class="control-label"></label>
+
+										<div class="controls">
+											<h:messages globalOnly="true" style="color:red"></h:messages>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions">
+									<h:commandLink styleClass="btn btn-primary"
+										action="#{cd_filieres.newFiliere}" value="Nouveau"></h:commandLink>
+									<h:commandLink styleClass="btn btn-primary"
+										actionListener="#{cd_filieres.saveFiliere}"
+										value="Enregistrer"></h:commandLink>
+									<h:commandLink styleClass="btn btn-primary"
+										onclick="confirm('Supprimer filiere #{cd_filieres.filiere.intitule} ?')?true:event.preventDefault();"
+										action="#{cd_filieres.dropFiliere}" value="Supprimer"></h:commandLink>
+									<a class="btn" href="index.xhtml">Retour</a>
+								</div>
+							</fieldset>
+						</h:form>
+					</div>
+				</div>
+				<!--/span-->
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
