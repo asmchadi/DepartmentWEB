@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+
+<!-- start: Meta -->
+<meta charset="utf-8" />
+<title>E-Departement | <ui:insert name="title"> Acceuill</ui:insert></title>
+<meta name="description" content="" />
+<meta name="author" content="Dennis Ji" />
+<meta name="keyword" content="" />
+<!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- end: Mobile Specific -->
+
+<!-- start: CSS -->
+<link id="bootstrap-style" href="#{resource['css/bootstrap.css']}"
+	rel="stylesheet" />
+<link href="#{resource['css/bootstrap-responsive.css']}"
+	rel="stylesheet" />
+<link id="base-style" href="#{resource['css/style.css']}"
+	rel="stylesheet" />
+<link id="base-style-responsive"
+	href="#{resource['css/style-responsive.css']}" rel="stylesheet" />
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext'
+	rel='stylesheet' type='text/css' />
+<!-- end: CSS -->
+
+<!-- start: Favicon -->
+<link rel="shortcut icon" href="img/favicon.ico" />
+<!-- end: Favicon -->
+</h:head>
+
+<h:body>
+	<!-- start: Header -->
+	<ui:insert name="header">
+		<ui:include src="/templates/enseignant/header.xhtml" />
+	</ui:insert>
+	<!-- end: Header -->
+
+	<div class="container-fluid-full">
+		<div class="row-fluid">
+
+			<!-- start: Main Menu -->
+			<ui:insert name="menu">
+				<ui:include src="/templates/enseignant/menu.xhtml" />
+			</ui:insert>
+			<!-- end: Main Menu -->
+
+			<!-- start: Content -->
+			<div id="content" class="span10">
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="/admin/">Acceuill</a> <i
+						class="icon-angle-right"></i></li>
+					<ui:insert name="submenu">
+						
+					</ui:insert>
+				</ul>
+				<ui:insert name="content">
+					
+				</ui:insert>
+			</div>
+			<!-- end: Content -->
+		</div>
+	</div>
+	<!--/fluid-row-->
+
+	<div class="clearfix"></div>
+
+
+	<ui:insert name="footer">
+		<ui:include src="/templates/enseignant/footer.xhtml" />
+	</ui:insert>
+
+
+	<!-- start: JavaScript-->
+
+	<script src="#{resource['js/jquery-1.9.1.min.js']}"></script>
+	<script src="#{resource['js/jquery-migrate-1.0.0.min.js']}"></script>
+
+	<script src="#{resource['js/jquery-ui-1.10.0.custom.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.ui.touch-punch.js']}"></script>
+
+	<script src="#{resource['js/modernizr.js']}"></script>
+
+	<script src="#{resource['js/bootstrap.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.cookie.js']}"></script>
+
+	<script src="#{resource['js/fullcalendar.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.dataTables.min.js']}"></script>
+
+	<script src="#{resource['js/excanvas.js']}"></script>
+	<script src="#{resource['js/jquery.flot.js']}"></script>
+	<script src="#{resource['js/jquery.flot.pie.js']}"></script>
+	<script src="#{resource['js/jquery.flot.stack.js']}"></script>
+	<script src="#{resource['js/jquery.flot.resize.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.chosen.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.uniform.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.cleditor.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.noty.js']}"></script>
+
+	<script src="#{resource['js/jquery.elfinder.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.raty.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.iphone.toggle.js']}"></script>
+
+	<script src="#{resource['js/jquery.uploadify-3.1.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.gritter.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.imagesloaded.js']}"></script>
+
+	<script src="#{resource['js/jquery.masonry.min.js']}"></script>
+
+	<script src="#{resource['js/jquery.knob.modified.js']}"></script>
+
+	<script src="#{resource['js/jquery.sparkline.min.js']}"></script>
+
+	<script src="#{resource['js/counter.js']}"></script>
+
+	<script src="#{resource['js/retina.js']}"></script>
+
+	<script src="#{resource['js/custom.js']}"></script>
+	<!-- end: JavaScript-->
+
+</h:body>
+</html>
