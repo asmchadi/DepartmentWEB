@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="index.xhtml">Pvs</a> <i class="icon-angle-right"></i></li>
+			<li><a href="#">Affichage</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<div class="row-fluid sortable ui-sortable">
+
+
+					<h1>
+						Charge Horaire De l'enseignant <strong>#{cd_cha.cha.enseignant}</strong>
+						pour l'année universitaire #{cd_cha.cha.anneeUniversitaire}
+					</h1>
+					<p:growl id="messages" showDetail="true" autoUpdate="true"
+						closable="true" />
+					<div class="box">
+						<div class="box-header">
+							<h2>
+								<i class="halflings-icon align-justify"></i><span class="break"></span>Charge
+								Horaire des Modules
+							</h2>
+							<div class="box-icon">
+								<a href="#" class="btn-minimize"><i
+									class="halflings-icon chevron-up"></i></a>
+							</div>
+						</div>
+						<div class="box-content">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Module</th>
+										<th>Cour</th>
+										<th>Section</th>
+										<th>TD</th>
+										<th>Group</th>
+										<th>TP</th>
+										<th>Group</th>
+										<th>Status</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="module" value="#{cd_cha.cha.modules}"
+										varStatus="loop">
+										<tr>
+											<td>#{module.module.intitule}</td>
+											<td>#{module.vhCour}</td>
+											<td>#{module.nbCour}</td>
+											<td>#{module.vhTD}</td>
+											<td>#{module.nbTD}</td>
+											<td>#{module.vhTP}</td>
+											<td>#{module.nbTP}</td>
+											<td>#{module.status}</td>
+											<td><p:commandButton value="Rejeter" type="button"
+													onclick="PF('dlg#{loop.index}').show();" /> <p:dialog
+													appendTo="@(body)" showHeader="false" id="dlg"
+													widgetVar="dlg#{loop.index}" height="auto" width="500">
+													<h:outputText value="Message pour l'enseignant..." />
+													<p:inputText id="message" value="#{cd_cha.msg}"></p:inputText>
+													<p:commandButton value="Envoyé" ajax="true" update="dlg"
+														actionListener="#{cd_cha.send(loop.index,'module')}"
+														partialSubmit="true" process="@this dlg" />
+													<p:commandButton value="Fermer" type="button"
+														onclick="PF('dlg#{loop.index}').hide();"></p:commandButton>
+												</p:dialog></td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+							<div class="centered">
+								<div class="controls">
+									<span class="input-xlarge uneditable-input">Total :
+										#{cd_cha.total_modules}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/span-->
+
+					<div class="box">
+						<div class="box-header">
+							<h2>
+								<i class="halflings-icon align-justify"></i><span class="break"></span>Charge
+								Horaire des Bonus
+							</h2>
+							<div class="box-icon">
+								<a href="#" class="btn-minimize"><i
+									class="halflings-icon chevron-up"></i></a>
+							</div>
+						</div>
+						<div class="box-content">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Bonus</th>
+										<th>Volume</th>
+										<th>Section</th>
+										<th>Status</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="bonus" value="#{cd_cha.cha.bonus}" varStatus="loop">
+										<tr>
+											<td>#{bonus.bonus.intitule}</td>
+											<td>#{bonus.bonus.volumeHoraire}</td>
+											<td>#{bonus.nbSection}</td>
+											<td>#{bonus.status}</td>
+											<td><p:commandButton value="Rejeter" type="button"
+													onclick="PF('dlgg#{loop.index}').show();" /> <p:dialog
+													appendTo="@(body)" showHeader="false" id="dlgg"
+													widgetVar="dlgg#{loop.index}" height="auto" width="500">
+													<h:outputText value="Message pour l'enseignant..." />
+													<p:inputText id="message" value="#{cd_cha.msg}"></p:inputText>
+													<p:commandButton value="Envoyé" ajax="true"
+														actionListener="#{cd_cha.send(loop.index,'bonus')}"
+														partialSubmit="true" process="@this dlgg" update="dlgg" />
+													<p:commandButton value="Fermer" type="button"
+														onclick="PF('dlgg#{loop.index}').hide();"></p:commandButton>
+												</p:dialog></td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+							<div class="centered">
+								<div class="controls">
+									<span class="input-xlarge uneditable-input">Total :
+										#{cd_cha.total_bonus}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--/span-->
+
+				</div>
+				<p:inputText type="hidden" value="#{cd_cha.index}"></p:inputText>
+				<fieldset>
+					<div class="control-group warning span4">
+						<label class="control-label">Charge des Modules</label>
+
+						<div class="controls">
+							<p:inputText class="input-xlarge focused"
+								value="#{cd_cha.cha.vhModule}"></p:inputText>
+						</div>
+					</div>
+					<div class="control-group warning span4">
+						<label class="control-label">Charge des Bonus</label>
+
+						<div class="controls">
+							<p:inputText class="input-xlarge" value="#{cd_cha.cha.vhBonus}"></p:inputText>
+						</div>
+					</div>
+					<div class="control-group success span4">
+						<label class="control-label">Charge Horaire Annuel</label>
+
+						<div class="controls">
+							<span class="input-xlarge uneditable-input">#{cd_cha.total}</span>
+						</div>
+					</div>
+
+					<div class="form-actions">
+						<p:commandButton ajax="false" action="#{cd_cha.save}"
+							value="Valider" type="submit" class="btn btn-primary"></p:commandButton>
+						<a class="btn" href="index.xhtml">Retour</a>
+					</div>
+				</fieldset>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
