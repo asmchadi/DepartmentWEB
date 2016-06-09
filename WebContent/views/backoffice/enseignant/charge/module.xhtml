@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		<ui:define name="title">
+			Charge Horaire
+		</ui:define>
+		<ui:define name="submenu">
+			<li><a href="">Charge Horaire</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title="">
+						<h2>
+							<i class="halflings-icon time"></i><span class="break"></span>Charge
+							Horaire De Module
+						</h2>
+						<div class="box-icon">
+
+							<a href="#" class="btn-setting"><i
+								class="halflings-icon wrench"></i></a> <a href="#"
+								class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+
+							<a href="#" class="btn-close"><i
+								class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<h:form styleClass="form-horizontal">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label span6" for="typeahead">Module</label>
+									<div class="controls">
+										<h:selectOneMenu id="module" value="#{chargeModule.module}" >
+											<f:selectItems value="#{chargeModule.modules}"
+												var="module" itemValue="#{module.id}"
+												itemLabel="#{module.intitule}" />
+										</h:selectOneMenu>
+										
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="module"></h:messages>
+										</p>
+
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label span6" for="typeahead">Cours (h) :</label>
+									<div class="controls">
+
+										<h:inputText id="vhCour" styleClass="span6"
+											value="#{chargeModule.charge.vhCour}" required="true"></h:inputText>
+
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="vhCour"></h:messages>
+										</p>
+
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Nbr Groupes :</label>
+									<div class="controls">
+
+										<h:inputText id="nbCour" styleClass="span6"
+											value="#{chargeModule.charge.nbCour}" required="true"></h:inputText>
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="nbCour"></h:messages>
+										</p>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label span6" for="typeahead">TD (h)</label>
+									<div class="controls">
+
+										<h:inputText id="vhTD" styleClass="span6"
+											value="#{chargeModule.charge.vhTD}" required="true"></h:inputText>
+
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="vhTD"></h:messages>
+										</p>
+
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Nbr Groupes :</label>
+									<div class="controls">
+
+										<h:inputText id="nbTD" styleClass="span6"
+											value="#{chargeModule.charge.nbTD}" required="true"></h:inputText>
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="nbTD"></h:messages>
+										</p>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label span6" for="typeahead">TP (h)</label>
+									<div class="controls">
+
+										<h:inputText id="vhTP" styleClass="span6"
+											value="#{chargeModule.charge.vhTP}" required="true"></h:inputText>
+
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="vhTP"></h:messages>
+										</p>
+
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Nbr Groupes :</label>
+									<div class="controls">
+
+										<h:inputText id="nbTP" styleClass="span6"
+											value="#{chargeModule.charge.nbTP}" required="true"></h:inputText>
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="nbTP"></h:messages>
+										</p>
+									</div>
+								</div>
+								
+								
+								
+								<div class="form-actions">
+									<h:commandButton type="submit" value="Valider"
+										styleClass="btn btn-primary" action="#{chargeModule.add()}"></h:commandButton>
+									<a class="btn btn-default" href="index.xhtml" >Annuler</a>
+								</div>
+							</fieldset>
+						</h:form>
+					</div>
+				</div>
+				<!--/span-->
+
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
