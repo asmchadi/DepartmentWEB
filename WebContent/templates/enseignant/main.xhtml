@@ -5,35 +5,61 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
-<!-- start: Meta -->
-<meta charset="utf-8" />
-<title>E-Departement | <ui:insert name="title"> Acceuill</ui:insert></title>
-<meta name="description" content="" />
-<meta name="author" content="Dennis Ji" />
-<meta name="keyword" content="" />
-<!-- end: Meta -->
+	<!-- start: Meta -->
+	<meta charset="utf-8" />
+	<title>E-Departement | <ui:insert name="title"> Acceuill</ui:insert></title>
+	<meta name="description" content="" />
+	<meta name="author" content="Dennis Ji" />
+	<meta name="keyword" content="" />
+	<!-- end: Meta -->
 
-<!-- start: Mobile Specific -->
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<!-- end: Mobile Specific -->
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- end: Mobile Specific -->
 
-<!-- start: CSS -->
-<link id="bootstrap-style" href="#{resource['css/bootstrap.css']}"
-	rel="stylesheet" />
-<link href="#{resource['css/bootstrap-responsive.css']}"
-	rel="stylesheet" />
-<link id="base-style" href="#{resource['css/style.css']}"
-	rel="stylesheet" />
-<link id="base-style-responsive"
-	href="#{resource['css/style-responsive.css']}" rel="stylesheet" />
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext'
-	rel='stylesheet' type='text/css' />
-<!-- end: CSS -->
+	<!-- start: CSS -->
+	<link id="bootstrap-style" href="#{resource['css/bootstrap.css']}"
+		rel="stylesheet" />
+	<link href="#{resource['css/bootstrap-responsive.css']}"
+		rel="stylesheet" />
+	<link id="base-style" href="#{resource['css/style.css']}"
+		rel="stylesheet" />
+	<link id="base-style-responsive"
+		href="#{resource['css/style-responsive.css']}" rel="stylesheet" />
+	<link
+		href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext'
+		rel='stylesheet' type='text/css' />
+	<!-- end: CSS -->
 
-<!-- start: Favicon -->
-<link rel="shortcut icon" href="img/favicon.ico" />
-<!-- end: Favicon -->
+	<!-- start: Favicon -->
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<!-- end: Favicon -->
+
+	<!-- Custom Style -->
+	<style>
+.label-PENDING, .label-MODIFIED {
+background: #FFC40D !important;
+    border-color: #FFC40D !important;
+    color: #fff;
+}
+
+.label-NONVALID, .label-REGECTED {
+	background: #EB3C00 !important;
+	border-color: #EB3C00 !important;
+	color: #fff;
+}
+
+.label-VALID {
+	background: #00A300 !important;
+	border-color: #00A300 !important;
+	color: #fff;
+}
+
+.label.remarque {
+cursor: pointer;
+}
+</style>
+
 </h:head>
 
 <h:body>
@@ -58,11 +84,11 @@
 					<li><i class="icon-home"></i> <a href="/admin/">Acceuill</a> <i
 						class="icon-angle-right"></i></li>
 					<ui:insert name="submenu">
-						
+
 					</ui:insert>
 				</ul>
 				<ui:insert name="content">
-					
+
 				</ui:insert>
 			</div>
 			<!-- end: Content -->

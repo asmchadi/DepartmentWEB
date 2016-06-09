@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		<ui:define name="title">
+			Mon Profile
+		</ui:define>
+		<ui:define name="submenu">
+			<li><a href="/admin/">Mon Profile</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title="">
+						<h2>
+							<i class="halflings-icon user"></i><span class="break"></span>Mon
+							Profile
+						</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i
+								class="halflings-icon wrench"></i></a> <a href="#"
+								class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i
+								class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+
+						<h:form styleClass="form-horizontal" enctype="multipart/form-data">
+							<fieldset>
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Nom</label>
+									<div class="controls">
+
+										<h:inputText styleClass="span6" id="nom"
+											value="#{enseignantBean.enseignant.nom}" required="true"></h:inputText>
+
+										<p class="help-block">Entrer votre nom</p>
+										<p>
+											<h:messages for="nom"></h:messages>
+										</p>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Prenom</label>
+									<div class="controls">
+
+										<h:inputText styleClass="span6" id="prenom"
+											value="#{enseignantBean.enseignant.prenom}" required="true"></h:inputText>
+										<p class="help-block">Entrer votre prenom</p>
+										<p>
+											<h:messages for="prenom"></h:messages>
+										</p>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Email</label>
+									<div class="controls">
+										<h:inputText styleClass="span6" id="email"
+											value="#{enseignantBean.enseignant.email}" required="true" validatorMessage="Email non Valid">
+											<f:validateRegex
+												pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+
+										</h:inputText>
+
+										<p class="help-block">Entrer votre email</p>
+										<h:messages for="email"></h:messages>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Nom
+										d'utilisateur</label>
+									<div class="controls">
+										<h:inputText styleClass="span6" id="login"
+											value="#{enseignantBean.enseignant.login}" required="true"></h:inputText>
+
+										<p class="help-block">Entrer votre nom d'utilisateur</p>
+										<h:messages for="login"></h:messages>
+									</div>
+								</div>
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Mot de
+										passe</label>
+									<div class="controls">
+										<h:inputSecret styleClass="span6" id="password"
+											value="#{enseignantBean.enseignant.password}"></h:inputSecret>
+										<p class="help-block">Entrer votre mot de passe</p>
+										<h:messages for="password"></h:messages>
+									</div>
+								</div>
+
+
+								<div class="control-group">
+									<label class="control-label" for="typeahead">Confirmation
+										mot de passe</label>
+									<div class="controls">
+										<h:inputSecret styleClass="span6" id="password_confirm"
+											value="#{enseignantBean.enseignant.password}"></h:inputSecret>
+										<p class="help-block">Confirmer votre mot de passe</p>
+										<h:messages for="password_confirm"></h:messages>
+									</div>
+								</div>
+
+
+								<div class="control-group">
+									<label class="control-label required">CV</label>
+
+									<div class="controls">
+
+										<p:fileUpload value="#{enseignantBean.file}"
+											allowTypes="/(\.|\/)(pdf)$/" mode="simple" skinSimple="true" />
+
+									</div>
+									<p class="help-block">Choisiser votre cv</p>
+
+								</div>
+
+								<div class="form-actions">
+									<h:commandButton type="submit" value="Valider"
+										styleClass="btn btn-primary" action="#{enseignantBean.update}"></h:commandButton>
+									<button type="reset" class="btn" href="index.xhtml">Annuler</button>
+								</div>
+							</fieldset>
+						</h:form>
+
+					</div>
+				</div>
+				<!--/span-->
+
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</body>
+</html>
