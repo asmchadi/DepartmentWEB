@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		
+		<ui:define name="content">
+		
+			<div class="row-fluid sortable ui-sortable">			
+				<div class="box span12">		
+					<div class="box-content">
+			
+						<h:form>
+						
+						  <fieldset>
+						  
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        		<h:panelGrid columns="2">
+                        
+	                            <h:outputLabel value="Intitulé :" for="intitulé" />
+	                            <p:inputText id="intitulé" value="#{ens_module.intitule}" title="intitulé" required="true"
+	                                       requiredMessage="Veuillez saisir l'intitulé de module" />
+	                            
+	                            <h:outputLabel value="Volume Horaire Cour :" for="vhcour" />
+	                            <p:inputText id="vhcour" value="#{ens_module.vhCour}" title="vhCour" required="true"
+	                                       requiredMessage="Veuillez saisir le Volume Horaire Cour" />
+	                            
+	                             <h:outputText value="Volume Horaire TP :" />  
+	                             <p:inputText id="vhTP" value="#{ens_module.vhTP}" title="vhTP" required="true"
+	                                       requiredMessage="Veuillez saisir le Volume Horaire TP" />
+	                                                          
+	                             <h:outputText value="Volume Horaire TD :" />  
+	                             <p:inputText id="vhTD" value="#{ens_module.vhTD}" title="vhTD" required="true"
+	                                       requiredMessage="Veuillez saisir le Volume Horaire TD" />
+	                                  	                                      
+	                              <h:outputText value="Semestre :" /> 
+	                              <p:selectOneMenu id="semstre" value="#{ens_module.semestre}"  required="true" style="width:100%">
+	                             	<f:selectItem id="s1" itemLabel="Semestre 1" itemValue="1" />
+	                                <f:selectItem id="s2" itemLabel="Semestre 2" itemValue="2" />
+	                             </p:selectOneMenu>
+	                                                
+	                             <h:outputText value="Filiere :" /> 
+	                             <p:selectOneMenu id="filiere" value="#{ens_module.filiere}"  required="false" style="width:100%">                            	                          	
+		                     		<f:selectItems value="#{ens_module.filieres}" var="fil" 
+		                     						itemLabel="#{fil.intitule}" itemValue="#{fil.id}" />							                          
+	                             </p:selectOneMenu>
+	                            
+	                             </h:panelGrid>
+	                         
+	                            <div class="form-actions">
+									<p:commandButton   action="#{ens_module.addModule}" value="Valider"  />
+	                            	<p:commandButton  action="#{ens_module.list()}"  value="Retour"/>
+	                            </div>
+                                  
+                  			</fieldset>
+                  			
+                  		 </h:form>
+                  		 
+					</div>                   
+                 </div>                 				
+			</div>
+        	
+           </ui:define>
+	</ui:composition>
+</h:body>
+</html>

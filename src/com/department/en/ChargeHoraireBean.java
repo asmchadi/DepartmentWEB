@@ -49,7 +49,6 @@ public class ChargeHoraireBean {
 			AnneeUniversitaire annee = new AnneeUniversitaire("2015/2016");
 			
 			charge.setAnneeUniversitaire(annee.getIntitule());
-			charge.setId(new Long(1));
 			charge.setStatus(Status.PENDING);
 
 			try {
@@ -113,9 +112,9 @@ public class ChargeHoraireBean {
 			total += bonus.getBonus().getVolumeHoraire();
 		}
 
-		for (BonusParticipant bonus : listPFE) {
-			total += bonus.getVolumeHoraire() * bonus.getNbSection();
-		}
+//		for (BonusParticipant bonus : listPFE) {
+//			total += bonus.getVolumeHoraire() * bonus.getNbSection();
+//		}
 
 		return String.valueOf(total);
 	}
