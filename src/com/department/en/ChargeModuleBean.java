@@ -27,7 +27,7 @@ public class ChargeModuleBean  {
 	
 	private ChargeModule chargeModule;
 	private List<Module> modules;
-	private Long module;
+
 	
 	
 	public ChargeModuleBean(){
@@ -48,7 +48,7 @@ public class ChargeModuleBean  {
 		ChargeHoraire chargeHoraire = srvChargeHoraire.getCurrentChargeHoraire();
 		
 		chargeModule.setChargeHoraire(chargeHoraire);
-		chargeModule.setModule(srvModule.findById(module));
+
 		chargeModule.setStatus(Status.PENDING);
 		
 		try {
@@ -90,18 +90,6 @@ public class ChargeModuleBean  {
 
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
-	}
-
-
-
-	public Long getModule() {
-		return module;
-	}
-
-
-
-	public void setModule(Long module) {
-		this.module = module;
 	}
 	
 	

@@ -50,6 +50,11 @@
 										<td>#{enseignantBean.enseignant.email}</td>
 									</tr>
 									<tr>
+										<td>Photo :</td>
+										<td>
+										<p:graphicImage width="250" value="#{enseignantBean.streamPhoto()}" /></td>
+									</tr>
+									<tr>
 
 										<td colspan="2">
 											<!-- <p:commandLink ajax="false">
@@ -58,7 +63,7 @@
 												<i class="halflings-icon white download"></i>#{enseignantBean.enseignant.cvName}
 										</p:commandLink> 
 										 --> <p:media
-												value="#{enseignantBean.streamContent(enseignantBean.enseignant.cvData,enseignantBean.enseignant.cvName,enseignantBean.enseignant.cvContentType)}"
+												value="#{enseignantBean.streamCV()}"
 												width="100%" height="600px" player="pdf">
 
 											</p:media>
