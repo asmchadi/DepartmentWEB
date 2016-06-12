@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="#">Notification</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="container-fluid-full">
+				<!--row-->
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header" data-original-title="data-original-title">
+							<h2>
+								<i class="halflings-icon user"></i> <span class="break"></span>
+								Notification
+							</h2>
+						</div>
+						<div class="box-content">
+							<table
+								class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+									<tr>
+										<th>Intitule</th>
+										<th>Date de notification</th>
+										<th>Date de voir</th>
+										<th>État</th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="notification" varStatus="loop"
+										value="#{e_notifications.notifications}">
+										<tr>
+											<td class="center">#{notification.intitule}</td>
+											<td class="center">#{notification.unreadDate}</td>
+											<td class="center">#{notification.readDate}</td>
+											<td class="center">#{notification.state}</td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
