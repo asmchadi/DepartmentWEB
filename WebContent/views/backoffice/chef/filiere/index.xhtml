@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="index.xhtml">Filieres</a> <i
+				class="icon-angle-right"></i></li>
+			<li><a href="#">Affichage</a></li>
+		</ui:define>
+		<ui:define name="content">
+
+			<h:form>
+			<div class="box-content">
+							<div class="row-fluid">
+								<div class="span6"></div>
+								<div class="span6">
+									<div style="text-align: right">
+										<a class="btn btn-primary" href="show.xhtml"> <i
+										class="halflings-icon white plus"></i> Ajouter Filiere
+									</a>
+									</div>
+								</div>
+							</div>
+				<table
+					class="table table-striped table-bordered bootstrap-datatable datatable">
+					<thead>
+						<tr>
+							<th>Filiere</th>
+							<th>Cycle</th>
+							<th>Formation</th>
+							<th>Coordonnateur</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="o" value="#{cd_filieres.filieres}"
+							varStatus="loop">
+							<tr>
+								<td>#{o.intitule}</td>
+								<td>#{o.cycle.intitule}</td>
+								<td>#{o.formation.intitule}</td>
+								<td>#{o.coordonnateur}</td>
+								<td class="center">
+								<h:commandLink
+													styleClass="btn btn-success"
+													action="#{cd_filieres.showFiliere(loop.index)}">
+													<i class='halflings-icon white zoom-in'></i>
+												</h:commandLink>
+									<h:commandLink class="btn btn-danger"
+									onclick="confirm('Supprimer document #{cd_filiere.filiere.intitule} ?')?true:event.preventDefault();"
+										action="#{cd_filieres.dropFiliere(loop.index)}">
+										<i class="halflings-icon white trash"></i>
+									</h:commandLink>
+								</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
