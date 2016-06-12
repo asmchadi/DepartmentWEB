@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="index.xhtml">Comptes</a> <i
+				class="icon-angle-right"></i></li>
+			<li><a href="#">Affichage</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="row-fluid sortable ui-sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title="">
+						<h2>
+							<i class="halflings-icon edit"></i><span class="break"></span>
+							Création d'une année universitaire pour charge horaire courant :
+						</h2>
+					</div>
+					<div class="box-content">
+						<h:form>
+							<fieldset>
+								<div class="box-header">
+									<h2>
+										<i class="halflings-icon align-justify"></i><span
+											class="break"></span>Charge Horaire des Bonus
+									</h2>
+									<div class="box-icon">
+										<a href="#" class="btn-setting"><i
+											class="halflings-icon wrench"></i></a> <a href="#"
+											class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+										<a href="#" class="btn-close"><i
+											class="halflings-icon remove"></i></a>
+									</div>
+								</div>
+								<div class="box-content">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Année</th>
+												<th>Courant</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											<ui:repeat var="bonus" value="#{cd_cha.cha.bonus}">
+												<tr>
+													<td>#{annee.intitule}</td>
+													<td></td>
+													<td>
+
+													</td>
+												</tr>
+											</ui:repeat>
+												<tr>
+													<td><h:inputText value="#{annee.intitule}"></h:inputText></h:inputText></td>
+													<td></td>
+													<td>
+
+													</td>
+												</tr>
+										</tbody>
+									</table>
+									<div class="centered">
+										<div class="controls">
+											<span class="input-xlarge uneditable-input">#{cd_cha.total_bonus}</span>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-actions">
+									<a class="btn" href="index.xhtml?faces-redirect=true">Retour</a>
+								</div>
+							</fieldset>
+						</h:form>
+					</div>
+				</div>
+				<!--/span-->
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

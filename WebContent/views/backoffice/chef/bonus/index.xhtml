@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="#">document</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header" data-original-title="data-original-title">
+							<h2>
+								<i class="halflings-icon user"></i><span class="break"></span>bonus
+							</h2>
+							<div class="box-icon">
+								<h:commandLink styleClass="halflings-icon plus"
+									action="#{cd_bonus.newBonus}">
+									<i class="halflings-icon plus"></i>
+								</h:commandLink>
+							</div>
+						</div>
+						<div class="box-content">
+							<table
+								class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+									<tr>
+										<th>bonus</th>
+										<th>volume</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="bonus" varStatus="loop"
+										value="#{cd_bonus.bonuss}">
+										<tr>
+											<td class="center">#{bonus.intitule}</td>
+											<td>#{bonus.volumeHoraire}</td>
+											<td class="center"><h:commandLink
+													styleClass="btn btn-success"
+													action="#{cd_bonus.showBonus(loop.index)}">
+													<i class='halflings-icon white zoom-in'></i>
+												</h:commandLink>
+												</td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

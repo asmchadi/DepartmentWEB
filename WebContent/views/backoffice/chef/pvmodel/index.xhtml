@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="#">Pvs</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header" data-original-title="data-original-title">
+							<h2>
+								<i class="halflings-icon user"></i><span class="break"></span>Pvs
+							</h2>
+							<div class="box-icon">
+								<h:commandLink value="Nouveau"
+									action="#{cd_pvmod.show}">
+									<i class="halflings-icon plus"></i>
+								</h:commandLink>
+							</div>
+						</div>
+						<div class="box-content">
+							<h:messages globalOnly="true" styleClass="text-error"></h:messages>
+							<table
+								class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+									<tr>
+										<th>Model</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="pv" varStatus="loop"
+										value="#{cd_pvmod.pvmodels}">
+										<tr>
+											<td class="center">#{pv.intitule}</td>
+											<td class="center">
+												<h:commandLink
+													styleClass="btn btn-success"
+													action="#{cd_pvmod.show(loop.index)}">
+													<i class='halflings-icon white zoom-in'></i>
+												</h:commandLink>
+											</td>
+										</tr>
+									</ui:repeat>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

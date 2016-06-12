@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/templates/backoffice/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="index.xhtml">Comptes</a> <i
+				class="icon-angle-right"></i></li>
+			<li><a href="#">Affichage</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label"></label>
+
+						<div class="controls">
+							<h:messages style="color:red"></h:messages>
+							<h:inputHidden value="#{cd_filieres.filiere.id}"></h:inputHidden>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label">intitule :</label>
+
+						<div class="controls">
+							<h:inputText value="#{cd_filieres.filiere.intitule}"></h:inputText>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label required">cycle :</label>
+						<div class="controls">
+							<h:selectOneMenu value="#{cd_filieres.filiere.cycle.id}">
+								<f:selectItems value="#{cd_filieres.cycles}" var="cycle"
+									itemValue="#{cycle.id}" itemLabel="#{cycle.intitule}" />
+								<f:selectItem itemValue="-1" itemLabel="Autre"></f:selectItem>
+							</h:selectOneMenu>
+							<h:inputText value="#{cd_filieres.filiere.cycle.intitule}"></h:inputText>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label required">formation :</label>
+						<div class="controls">
+							<h:selectOneMenu value="#{cd_filieres.filiere.formation.id}" id="frmId">
+								<f:selectItems value="#{cd_filieres.formations}" var="formation"
+									itemValue="#{formation.id}" itemLabel="#{formation.intitule}" />
+								<f:selectItem itemValue="-1" itemLabel="Autre" ></f:selectItem>
+							</h:selectOneMenu>
+							<h:inputText value="#{cd_filieres.filiere.formation.intitule}"></h:inputText>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label required">coordonnateur :</label>
+						<div class="controls">
+							<h:selectOneMenu value="#{cd_filieres.filiere.coordonnateur.id}">
+								<f:selectItems value="#{cd_filieres.enseignants}" var="ens"
+									itemValue="#{ens.id}" itemLabel="#{ens}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<div class="form-actions">
+									<h:commandLink styleClass="btn btn-primary"
+										action="#{cd_filieres.newFiliere}" value="Nouveau"></h:commandLink>
+						<h:commandButton type="submit" value="Enregistrer"  styleClass="btn btn-primary"
+							actionListener="#{cd_filieres.saveFiliere}" />
+						<a class="btn" href="index.xhtml?faces-redirect=true">Retour</a>
+					</div>
+				</fieldset>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

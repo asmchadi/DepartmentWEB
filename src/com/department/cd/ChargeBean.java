@@ -2,19 +2,23 @@ package com.department.cd;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import com.department.ejb.AnneeService;
 import com.department.ejb.BonusParticipantService;
 import com.department.ejb.ChargeHoraireService;
 import com.department.ejb.ChargeModuleService;
+import com.department.entities.AnneeUniversitaire;
 import com.department.entities.BonusParticipant;
 import com.department.entities.ChargeHoraire;
 import com.department.entities.ChargeModule;
 import com.department.utils.Status;
+import com.department.utils._TableNames;
 
 @SessionScoped
 @ManagedBean(name = "cd_cha")
@@ -27,13 +31,50 @@ public class ChargeBean {
 	private ChargeModuleService srvCHM;
 	@EJB
 	private BonusParticipantService srvCHB;
-	// @EJB
-	// private AnneeService srvANN;
-	// private AnneeUniversitaire annee;
+	@EJB
+	private AnneeService srvANN;
+	
+	public List<AnneeUniversitaire> getAnnees(){
+		return srvANN.findAll("intitule");
+	}
+	
+	private AnneeUniversitaire annee;
+
+	public AnneeUniversitaire getAnnee() {
+		return annee;
+	}
+	public void setAnnee(AnneeUniversitaire annee) {
+		this.annee = annee;
+	}
+
 	private List<ChargeHoraire> chas;
 	private Integer index;
 	private String msg = "";
+	
+	public Integer countNV(){
+		return getChas().size();
+	}
 
+//	private List<BonusParticipant> pfe; 
+//	public List<BonusParticipant> getPfe() {
+//		 return cha.getBonus().stream().filter(new Predicate<BonusParticipant>() {
+//			@Override
+//			public boolean test(BonusParticipant t) {
+//				// TODO Auto-generated method stub
+//				return t.getStatus() == Status.NONVALID;
+//			}
+//		}).map(null);
+//	}
+//	public void setPfe(List<BonusParticipant> pfe) {
+//		this.pfe = pfe;
+//	}
+	
+	@PostConstruct
+	private void init() {
+		// TODO Auto-generated method stub
+		this.annee = new AnneeUniversitaire();
+	}
+	
 	public String test() {
 		System.out.println("message de test " + msg);
 		FacesMessage msgg = new FacesMessage();
@@ -44,17 +85,17 @@ public class ChargeBean {
 	}
 
 	public void send(String index, String type) {
-		Integer i = Integer.parseInt(index);
+		Long i = Long.parseLong(index);
 		System.out.println("values: " + getMsg() + "-" + index + "-" + type);
 		FacesMessage msgg = new FacesMessage();
 		try {
 			if (type.equals("module")){
-				ChargeModule m = cha.getModules().get(i);
+				ChargeModule m = srvCHM.findById(i);
 				m.setStatus(Status.REGECTED);
 				m.setMessage(msg);
 				srvCHM.update(m);
 			}else{
-				BonusParticipant b = cha.getBonus().get(i);
+				BonusParticipant b = srvCHB.findById(i);
 				b.setStatus(Status.REGECTED);
 				b.setMessage(msg);
 				srvCHB.update(b);
@@ -73,22 +114,6 @@ public class ChargeBean {
 		FacesContext.getCurrentInstance().addMessage(null, msgg);
 	}
 
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-
-	public Integer getIndex() {
-		return index;
-	}
-
-	public void setIndex(Integer index) {
-		this.index = index;
-	}
-
 	public List<ChargeHoraire> getChas() {
 		// HashMap<String, Integer> params = new HashMap<>();
 		// params.put("status", Status.MODIFIED.²);
@@ -102,24 +127,19 @@ public class ChargeBean {
 		return chas;
 	}
 
-	public ChargeHoraire getCha() {
-		return cha;
-	}
-
-	public void setCha(ChargeHoraire cha) {
-		this.cha = cha;
-	}
-
-	public Double getTotal_bonus() {
+	public Double getTotal_bonus(boolean f) {
 		Double result = 0.0;
 		for (BonusParticipant b : cha.getBonus()) {
-			result += b.getBonus().getVolumeHoraire() * b.getNbSection();
+			if (f && b.getBonus().getIntitule().contains("PFE"))
+				result += b.getBonus().getVolumeHoraire() * b.getNbSection();
+			if (!f && !b.getBonus().getIntitule().contains("PFE"))
+				result += b.getBonus().getVolumeHoraire() * b.getNbSection();
 		}
 		return result;
 	}
 
 	public Double getTotal() {
-		return getTotal_bonus() + getTotal_modules();
+		return getTotal_bonus(true) + getTotal_bonus(false) + getTotal_modules();
 	}
 
 	public Double getTotal_modules() {
@@ -152,10 +172,77 @@ public class ChargeBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-			msg.setSummary("Pv publication échouée");
+			msg.setSummary("Operation échouée");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 		return "";
+	}
+	
+	public String saveAn() {
+		FacesMessage msg = new FacesMessage();
+		try {
+			srvANN.update(annee);
+			if(annee.getIsCurrent()){
+				srvANN.updateQuery("update AnneeUniversitaire set isCurrent=0 where intitule <> '" + annee.getIntitule()+"'");
+			}
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			msg.setSummary("Annee actualiser avec succée");
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			msg.setSummary("Operation échouée");
+		}
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		return "";
+	}	
+
+	public String showAn(int index) {
+		this.annee = getAnnees().get(index);
+		return "";
+	}
+	
+	public String newAn() {
+		this.annee = new AnneeUniversitaire();
+		return "new.xhtml";
+	}
+	
+	public String dropAn(int index) {
+		FacesMessage msg = new FacesMessage();
+		try {
+			srvANN.delete(getAnnees().get(index));
+			msg.setSeverity(FacesMessage.SEVERITY_INFO);
+			msg.setSummary("Annee supprimer avec succée");
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			msg.setSummary("Operation échouée");
+		}
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		return "";
+	}
+
+	public ChargeHoraire getCha() {
+		return cha;
+	}
+
+	public void setCha(ChargeHoraire cha) {
+		this.cha = cha;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public Integer getIndex() {
+		return index;
+	}
+
+	public void setIndex(Integer index) {
+		this.index = index;
 	}
 
 }
