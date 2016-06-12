@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 <body>
 	<ui:composition>
 		<!-- start: Main Menu -->
@@ -19,6 +20,33 @@
 							class="hidden-tablet"> Cours</span></a></li>
 					<li><a href="tasks.html"><i class="icon-calendar"></i><span
 							class="hidden-tablet"> Emploi du Temps</span></a></li>
+
+					<li>
+						<a class="dropmenu" href="#">
+							<i class="icon-folder-close-alt"></i>
+							<span class="hidden-tablet">PV</span>
+							<h:panelGroup rendered="#{e_pvs.newPv()}">
+								<span style="margin-left:5px" class="label label-important">#{e_pvs.countNewPv()}</span>
+							</h:panelGroup>
+						</a>
+						<ul>
+							<li>
+								<a class="submenu" href="editPV.xhtml">
+									<i class="icon-file-alt"></i>
+									<span class="hidden-tablet">PV courant</span>
+									<h:panelGroup rendered="#{e_pvs.newPv()}">
+										<span style="margin-left:5px" class="label label-warning">#{e_pvs.validityPV()} jours</span>
+									</h:panelGroup>
+								</a>
+							</li>
+							<li>
+								<a class="submenu" href="PVs.xhtml">
+									<i class="icon-file-alt"></i>
+									<span class="hidden-tablet">Historique</span>
+								</a>
+							</li>
+						</ul>
+					</li>
 
 					<li><a href="#{request.contextPath}/faces/views/backoffice/enseignant/charge/index.xhtml"><i class="icon-time"></i><span
 							class="hidden-tablet"> Charge Horaire</span><span style="margin-left:5px" class="label label-#{chargeHoraire.status}">#{chargeHoraire.status}</span></a></li>

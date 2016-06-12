@@ -30,7 +30,7 @@ public class EnseignantBean {
 
 	@PostConstruct
 	private void init() {
-		enseignant = srvEnseignant.findFirst();
+//		enseignant = srvEnseignant.findFirst();
 		if (enseignant == null) {
 			enseignant = new Enseignant();
 			enseignant.setNom("Enseignant 1");
