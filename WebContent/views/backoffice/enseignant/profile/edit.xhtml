@@ -65,7 +65,8 @@
 									<label class="control-label" for="typeahead">Email</label>
 									<div class="controls">
 										<h:inputText styleClass="span6" id="email"
-											value="#{enseignantBean.enseignant.email}" required="true" validatorMessage="Email non Valid">
+											value="#{enseignantBean.enseignant.email}" required="true"
+											validatorMessage="Email non Valid">
 											<f:validateRegex
 												pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
 
@@ -111,24 +112,36 @@
 									</div>
 								</div>
 
-
 								<div class="control-group">
-									<label class="control-label required">CV</label>
+									<label class="control-label required">Photo </label>
 
 									<div class="controls">
 
-										<p:fileUpload value="#{enseignantBean.file}"
+										<p:fileUpload id="photo" value="#{enseignantBean.photo}"
 											allowTypes="/(\.|\/)(pdf)$/" mode="simple" skinSimple="true" />
-
+										<p class="help-block">Choisiser votre photo</p>
+										<h:messages for="photo"></h:messages>
 									</div>
-									<p class="help-block">Choisiser votre cv</p>
+
 
 								</div>
+
+								<div class="control-group">
+									<label class="control-label required">CV</label>
+									<div class="controls">
+
+										<p:fileUpload id="cv" value="#{enseignantBean.file}"
+											allowTypes="/(\.|\/)(pdf)$/" mode="simple" skinSimple="true" />
+										<p class="help-block">Choisiser votre cv</p>
+										<h:messages for="cv"></h:messages>
+									</div>
+								</div>
+
 
 								<div class="form-actions">
 									<h:commandButton type="submit" value="Valider"
 										styleClass="btn btn-primary" action="#{enseignantBean.update}"></h:commandButton>
-									<button type="reset" class="btn" href="index.xhtml">Annuler</button>
+									<a class="btn" href="index.xhtml?faces-redirect=true">Annuler</a>
 								</div>
 							</fieldset>
 						</h:form>

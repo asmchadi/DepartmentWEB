@@ -34,18 +34,44 @@
 					<div class="box-content">
 						<h:form styleClass="form-horizontal">
 							<fieldset>
+							<div class="control-group">
+									<label class="control-label span6" for="typeahead">Filliére</label>
+									<div class="controls">
+										<h:inputText id="filiere" styleClass="span6"
+											value="#{chargeModule.charge.filiere}" required="true"></h:inputText>
+										
+										
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="filiere"></h:messages>
+										</p>
+
+									</div>
+								</div>
 								<div class="control-group">
 									<label class="control-label span6" for="typeahead">Module</label>
 									<div class="controls">
-										<h:selectOneMenu id="module" value="#{chargeModule.module}" >
-											<f:selectItems value="#{chargeModule.modules}"
-												var="module" itemValue="#{module.id}"
-												itemLabel="#{module.intitule}" />
-										</h:selectOneMenu>
+										<h:inputText id="module" styleClass="span6"
+											value="#{chargeModule.charge.module}" required="true"></h:inputText>
+										
 										
 										<p class="help-block"></p>
 										<p>
 											<h:messages for="module"></h:messages>
+										</p>
+
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label span6" for="typeahead">Semestre</label>
+									<div class="controls">
+										<h:inputText id="semestre" styleClass="span6"
+											value="#{chargeModule.charge.semestre}" required="true"></h:inputText>
+										
+										
+										<p class="help-block"></p>
+										<p>
+											<h:messages for="semestre"></h:messages>
 										</p>
 
 									</div>
