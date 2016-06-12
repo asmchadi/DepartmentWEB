@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
 <body>
 	<ui:composition>
 		<!-- start: Main Menu -->
@@ -11,17 +12,45 @@
 				<ul class="nav nav-tabs nav-stacked main-menu">
 					<li><a href="index.html"><i class="icon-home"></i><span
 							class="hidden-tablet"> Acceuill</span></a></li>
-					<li><a href="#{request.contextPath}/faces/views/backoffice/enseignant/profile/index.xhtml"><i class="icon-user"></i><span
-							class="hidden-tablet">Mon Profile</span></a></li>
-					<li><a href="#{request.contextPath}/faces/views/backoffice/enseignant/module/index.xhtml"><i class="icon-folder-close"></i><span
-							class="hidden-tablet"> Modules</span></a></li>
+					<li><a
+						href="#{request.contextPath}/faces/views/backoffice/enseignant/profile/index.xhtml"><i
+							class="icon-user"></i><span class="hidden-tablet">Mon
+								Profile</span></a></li>
+					<li><a
+						href="#{request.contextPath}/faces/views/backoffice/enseignant/module/index.xhtml"><i
+							class="icon-folder-close"></i><span class="hidden-tablet">
+								Modules</span></a></li>
 					<li><a href="tasks.html"><i class="icon-book"></i><span
 							class="hidden-tablet"> Cours</span></a></li>
 					<li><a href="tasks.html"><i class="icon-calendar"></i><span
 							class="hidden-tablet"> Emploi du Temps</span></a></li>
-
-					<li><a href="#{request.contextPath}/faces/views/backoffice/enseignant/charge/index.xhtml"><i class="icon-time"></i><span
-							class="hidden-tablet"> Charge Horaire</span><span style="margin-left:5px" class="label label-#{chargeHoraire.status}">#{chargeHoraire.status}</span></a></li>
+					<li><a class="dropmenu" href="#"> <i
+							class="icon-folder-close-alt"></i> <span class="hidden-tablet">PV</span>
+							<h:panelGroup rendered="#{e_pvs.pv.state == 'NONVALID'}">
+								<span style="margin-left: 5px" class="label label-important">#{e_pvs.pv.state}</span>
+							</h:panelGroup>
+					</a>
+						<ul>
+							<li><a class="submenu"
+								href="#{request.contextPath}/faces/views/backoffice/enseignant/pv/currentPV.xhtml">
+									<i class="icon-file-alt"></i> <span class="hidden-tablet">PV
+										courant</span> <h:panelGroup
+										rendered="#{e_pvs.pv.state == 'NONVALID'}">
+										<span style="margin-left: 5px" class="label label-warning">#{e_pvs.validityPV()}
+											jours</span>
+									</h:panelGroup>
+							</a></li>
+							<li><a class="submenu"
+								href="#{request.contextPath}/faces/views/backoffice/enseignant/pv/historyPVs.xhtml">
+									<i class="icon-file-alt"></i> <span class="hidden-tablet">Historique
+										des PVs</span>
+							</a></li>
+						</ul></li>
+					<li><a
+						href="#{request.contextPath}/faces/views/backoffice/enseignant/charge/index.xhtml"><i
+							class="icon-time"></i><span class="hidden-tablet"> Charge
+								Horaire</span><span style="margin-left: 5px"
+							class="label label-#{chargeHoraire.status}">#{chargeHoraire.status}</span></a></li>
 					<li><a href="messages.html"><i class="icon-briefcase"></i><span
 							class="hidden-tablet"> Documents</span></a></li>
 					<li><a href="messages.html"><i class="icon-certificate"></i><span

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="currentPV.xhtml">PV</a></li>
+		</ui:define>
+		<ui:define name="content">
+				<h:panelGroup rendered="#{e_pvs.pv.state == 'NONVALID'}">
+					<!--row-->
+					<div class="row-fluid">
+						<h:messages />
+						<h:form>
+							<h:outputText value="Titre : #{e_pvs.pv.intitule}" />
+							<br />
+							<h:outputText value="État : #{e_pvs.pv.state}" />
+							<br />
+							<h:outputText value="Date de publication : #{e_pvs.pv.date}" />
+							<hr />
+							<pe:ckEditor id="editor" value="#{e_pvs.pv.content}" width="1100" height="512"/>
+							<hr />
+							<p:commandButton ajax="false" class="btn btn-success" action="#{e_pvs.validatePv(e_pvs.pv)}" value="Validate">
+								<i class='halflings-icon white ok'></i>
+							</p:commandButton>
+						</h:form>
+						<div class="clearfix"></div>
+						<hr />
+					</div>
+					<!--/row-->
+				</h:panelGroup>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

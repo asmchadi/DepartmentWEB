@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:body>
+	<ui:composition template="/templates/enseignant/main.xhtml">
+		<ui:define name="submenu">
+			<li><a href="historyPVs.xhtml">Historique des PVs</a></li>
+		</ui:define>
+		<ui:define name="content">
+			<div class="container-fluid-full">
+				<!--row-->
+				<div class="row-fluid sortable">
+					<div class="box span12">
+						<div class="box-header" data-original-title="data-original-title">
+							<h2><i class="halflings-icon user"></i> <span class="break"></span>PV</h2>
+						</div>
+						<div class="box-content">
+							<table
+								class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+									<tr>
+										<th>Intitule</th>
+										<th>Date de publication</th>
+										<th>État</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<ui:repeat var="pv" varStatus="loop" value="#{e_pvs.pvs}">
+										<h:panelGroup rendered="#{pv.state != 'NONVALID'}">
+											<tr>
+												<td class="center">#{pv.intitule}</td>
+												<td class="center">#{pv.date}</td>
+												<td class="center">#{pv.state}</td>
+												<td class="center">
+													<h:form>
+														<h:commandLink class="btn btn-info"
+															action="#{e_pvs.showPv(pv)}" value="Show">
+															<i class='halflings-icon white zoom-in'></i>
+														</h:commandLink>
+													</h:form>
+												</td>
+											</tr>
+										</h:panelGroup>
+									</ui:repeat>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--/span-->
+				</div>
+				<!--/row-->
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
